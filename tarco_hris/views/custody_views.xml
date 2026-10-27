@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tarco_asset_type_list" model="ir.ui.view">
+        <field name="name">tarco.hr.asset.type.list</field>
+        <field name="model">tarco.hr.asset.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="give_default"/>
+                <field name="note"/>
+                <field name="active" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_tarco_asset_type_form" model="ir.ui.view">
+        <field name="name">tarco.hr.asset.type.form</field>
+        <field name="model">tarco.hr.asset.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code" placeholder="headset"/>
+                        <field name="sequence"/>
+                        <field name="give_default"/>
+                        <field name="active"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_tarco_asset_types" model="ir.actions.act_window">
+        <field name="name">Custody types</field>
+        <field name="res_model">tarco.hr.asset.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_tarco_requirement_form" model="ir.ui.view">
+        <field name="name">tarco.hr.requirement.form</field>
+        <field name="model">tarco.hr.requirement</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_done" type="object" string="Mark done" class="btn-primary" invisible="state != 'todo'"/>
+                    <button name="action_issue_custody" type="object" string="Issue custody" class="btn-primary"
+                            invisible="state != 'todo' or kind not in ('computer', 'mobile', 'uniform', 'badge', 'warehouse', 'other')"/>
+                    <button name="action_todo" type="object" string="Reset to do" invisible="state == 'todo'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state == 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="todo,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="employee_id"/>
+                            <field name="employee_code"/>
+                            <field name="department_id"/>
+                            <field name="kind"/>
+                        </group>
+                        <group>
+                            <field name="onboarding_id"/>
+                            <field name="asset_id"/>
+                            <field name="done_date"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="view_tarco_requirement_list" model="ir.ui.view">
+        <field name="name">tarco.hr.requirement.list</field>
+        <field name="model">tarco.hr.requirement</field>
+        <field name="arch" type="xml">
+            <list decoration-warning="state == 'todo'" decoration-success="state == 'done'" decoration-muted="state == 'cancel'">
+                <field name="name"/>
+                <field name="employee_code" optional="show"/>
+                <field name="employee_id"/>
+                <field name="department_id" optional="show"/>
+                <field name="kind"/>
+                <field name="asset_id" optional="show"/>
+                <field name="done_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_tarco_requirement_search" model="ir.ui.view">
+        <field name="name">tarco.hr.requirement.search</field>
+        <field name="model">tarco.hr.requirement</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="employee_code"/>
+                <filter name="todo" string="To do" domain="[('state', '=', 'todo')]"/>
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="assets" string="Items to issue" domain="[('kind', 'in', ('computer', 'mobile', 'uniform', 'badge', 'warehouse'))]"/>
+                <group>
+                    <filter name="group_kind" string="Type" context="{'group_by': 'kind'}"/>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_tarco_requirements" model="ir.actions.act_window">
+        <field name="name">Work requirements</field>
+        <field name="res_model">tarco.hr.requirement</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_todo': 1}</field>
+    </record>
+
+    <record id="view_tarco_asset_form" model="ir.ui.view">
+        <field name="name">tarco.hr.asset.form</field>
+        <field name="model">tarco.hr.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_issue" type="object" string="Give to employee" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_return" type="object" string="Return" class="btn-primary" invisible="state != 'issued'"/>
+                    <button name="action_lost" type="object" string="Lost / not returned" invisible="state != 'issued'"
+                            confirm="Mark this item as lost? It will not be expected back at end of service."/>
+                    <button name="action_draft" type="object" string="Reset to draft" invisible="state not in ('returned', 'lost', 'cancel')"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state not in ('draft', 'returned', 'lost')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,issued,returned,lost"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="employee_code"/>
+                            <field name="department_id"/>
+                            <field name="type_id"/>
+                            <field name="description"/>
+                            <field name="serial"/>
+                            <field name="quantity"/>
+                        </group>
+                        <group>
+                            <field name="issue_date"/>
+                            <field name="expected_return_date"/>
+                            <field name="return_date"/>
+                            <field name="condition_issue"/>
+                            <field name="condition_return"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="value"/>
+                            <field name="requirement_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="view_tarco_asset_list" model="ir.ui.view">
+        <field name="name">tarco.hr.asset.list</field>
+        <field name="model">tarco.hr.asset</field>
+        <field name="arch" type="xml">
+            <list create="false" delete="false" decoration-info="state == 'issued'" decoration-success="state == 'returned'" decoration-danger="state == 'lost'" decoration-muted="state in ('draft', 'cancel')">
+                <field name="name" optional="hide" readonly="1"/>
+                <field name="employee_code" optional="show" readonly="1"/>
+                <field name="employee_id" readonly="1"/>
+                <field name="type_id" readonly="1"/>
+                <field name="description" readonly="1"/>
+                <field name="serial" readonly="1"/>
+                <field name="issue_date" readonly="1"/>
+                <field name="return_date" optional="show" readonly="1"/>
+                <field name="state" optional="show" readonly="1"/>
+                <button name="action_return" type="object" string="Return" icon="fa-undo" invisible="state != 'issued'"/>
+                <button name="action_lost" type="object" string="Lost" icon="fa-times-circle" class="text-danger"
+                        invisible="state != 'issued'"
+                        confirm="Mark this item as lost? It will not be expected back at end of service."/>
+            </list>
+        </field>
+    </record>
+    <record id="view_tarco_asset_search" model="ir.ui.view">
+        <field name="name">tarco.hr.asset.search</field>
+        <field name="model">tarco.hr.asset</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="employee_code"/>
+                <field name="type_id"/>
+                <field name="serial"/>
+                <field name="description"/>
+                <filter name="issued" string="Issued (outstanding)" domain="[('state', '=', 'issued')]"/>
+                <filter name="returned" string="Returned" domain="[('state', '=', 'returned')]"/>
+                <filter name="lost" string="Lost" domain="[('state', '=', 'lost')]"/>
+                <group>
+                    <filter name="group_type" string="Type" context="{'group_by': 'type_id'}"/>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_tarco_assets" model="ir.actions.act_window">
+        <field name="name">Employee custody</field>
+        <field name="res_model">tarco.hr.asset</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_issued': 1, 'default_state': 'issued'}</field>
+    </record>
+    <record id="action_tarco_assets_outstanding" model="ir.actions.act_window">
+        <field name="name">Outstanding custody</field>
+        <field name="res_model">tarco.hr.asset</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', '=', 'issued')]</field>
+        <field name="context">{'search_default_issued': 1}</field>
+    </record>
+
+    <record id="view_tarco_issue_wizard" model="ir.ui.view">
+        <field name="name">tarco.hr.issue.wizard.form</field>
+        <field name="model">tarco.hr.issue.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Give custody">
+                <group>
+                    <field name="employee_id"/>
+                    <field name="employee_code"/>
+                </group>
+                <separator string="Tick what you are handing over"/>
+                <p class="text-muted">
+                    Types come from Configuration &gt; Custody types. Add any item there (headset, keys, tools) and it appears here.
+                </p>
+                <field name="line_ids" nolabel="1">
+                    <list editable="bottom">
+                        <field name="give"/>
+                        <field name="type_id"/>
+                        <field name="description"/>
+                        <field name="serial"/>
+                        <field name="quantity"/>
+                    </list>
+                </field>
+                <group>
+                    <field name="note" placeholder="Optional note"/>
+                </group>
+                <footer>
+                    <button name="action_give" type="object" string="Give to employee" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_tarco_issue_wizard" model="ir.actions.act_window">
+        <field name="name">Give custody</field>
+        <field name="res_model">tarco.hr.issue.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_tarco_exit_wizard" model="ir.ui.view">
+        <field name="name">tarco.hr.exit.wizard.form</field>
+        <field name="model">tarco.hr.exit.wizard</field>
+        <field name="arch" type="xml">
+            <form string="End of service">
+                <group>
+                    <field name="employee_id" readonly="1"/>
+                    <field name="employee_code"/>
+                    <field name="exit_kind"/>
+                    <field name="resignation_date"/>
+                    <field name="outstanding_count"/>
+                </group>
+                <p class="text-muted" invisible="outstanding_count">
+                    No issued custody. Confirm to record the last working day.
+                </p>
+                <p invisible="not outstanding_count">
+                    These items will be returned automatically when you confirm.
+                </p>
+                <field name="line_ids" nolabel="1" invisible="not outstanding_count">
+                    <list create="false" delete="false">
+                        <field name="asset_id" readonly="1"/>
+                        <field name="type_id"/>
+                        <field name="description"/>
+                        <field name="serial"/>
+                    </list>
+                </field>
+                <group>
+                    <field name="note" placeholder="Optional note"/>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="Confirm and return custody" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,57 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tarco_hr_document_hr,tarco.hr.document hr,model_tarco_hr_document,hr.group_hr_user,1,1,1,1
+access_tarco_hr_onboarding_hr,tarco.hr.onboarding hr,model_tarco_hr_onboarding,hr.group_hr_user,1,1,1,1
+access_tarco_hr_shift_hr,tarco.hr.shift hr,model_tarco_hr_shift,hr.group_hr_user,1,1,1,1
+access_tarco_hr_attendance_day_hr,tarco.hr.attendance.day hr,model_tarco_hr_attendance_day,hr.group_hr_user,1,1,1,1
+access_tarco_hr_public_holiday_hr,tarco.hr.public.holiday hr,model_tarco_hr_public_holiday,hr.group_hr_user,1,1,1,1
+access_tarco_hr_leave_encashment_hr,tarco.hr.leave.encashment hr,model_tarco_hr_leave_encashment,hr.group_hr_user,1,1,1,1
+access_tarco_hr_mission_hr,tarco.hr.mission hr,model_tarco_hr_mission,hr.group_hr_user,1,1,1,1
+access_tarco_hr_mission_user,tarco.hr.mission user,model_tarco_hr_mission,base.group_user,1,1,1,0
+access_tarco_hr_mission_line_hr,tarco.hr.mission.line hr,model_tarco_hr_mission_line,hr.group_hr_user,1,1,1,1
+access_tarco_hr_mission_line_user,tarco.hr.mission.line user,model_tarco_hr_mission_line,base.group_user,1,1,1,0
+access_tarco_hr_overtime_hr,tarco.hr.overtime hr,model_tarco_hr_overtime,hr.group_hr_user,1,1,1,1
+access_tarco_hr_overtime_line_hr,tarco.hr.overtime.line hr,model_tarco_hr_overtime_line,hr.group_hr_user,1,1,1,1
+access_tarco_hr_penalty_rule_hr,tarco.hr.penalty.rule hr,model_tarco_hr_penalty_rule,hr.group_hr_user,1,1,1,1
+access_tarco_hr_penalty_hr,tarco.hr.penalty hr,model_tarco_hr_penalty,hr.group_hr_user,1,1,1,1
+access_tarco_hr_penalty_line_hr,tarco.hr.penalty.line hr,model_tarco_hr_penalty_line,hr.group_hr_user,1,1,1,1
+access_tarco_hr_reward_hr,tarco.hr.reward hr,model_tarco_hr_reward,hr.group_hr_user,1,1,1,1
+access_tarco_hr_advance_hr,tarco.hr.advance hr,model_tarco_hr_advance,hr.group_hr_user,1,1,1,1
+access_tarco_hr_advance_line_hr,tarco.hr.advance.line hr,model_tarco_hr_advance_line,hr.group_hr_user,1,1,1,1
+access_tarco_hr_job_question_hr,tarco.hr.job.question hr,model_tarco_hr_job_question,hr.group_hr_user,1,1,1,1
+access_tarco_hr_applicant_answer_hr,tarco.hr.applicant.answer hr,model_tarco_hr_applicant_answer,hr.group_hr_user,1,1,1,1
+access_tarco_hr_kpi_template_hr,tarco.hr.kpi.template hr,model_tarco_hr_kpi_template,hr.group_hr_user,1,1,1,1
+access_tarco_hr_kpi_template_line_hr,tarco.hr.kpi.template.line hr,model_tarco_hr_kpi_template_line,hr.group_hr_user,1,1,1,1
+access_tarco_hr_kpi_review_hr,tarco.hr.kpi.review hr,model_tarco_hr_kpi_review,hr.group_hr_user,1,1,1,1
+access_tarco_hr_kpi_review_user,tarco.hr.kpi.review user,model_tarco_hr_kpi_review,base.group_user,1,1,1,0
+access_tarco_hr_kpi_review_line_hr,tarco.hr.kpi.review.line hr,model_tarco_hr_kpi_review_line,hr.group_hr_user,1,1,1,1
+access_tarco_hr_kpi_review_line_user,tarco.hr.kpi.review.line user,model_tarco_hr_kpi_review_line,base.group_user,1,1,1,0
+access_tarco_hr_kpi_output_hr,tarco.hr.kpi.output hr,model_tarco_hr_kpi_output,hr.group_hr_user,1,1,1,1
+access_tarco_hr_kpi_output_user,tarco.hr.kpi.output user,model_tarco_hr_kpi_output,base.group_user,1,1,1,0
+access_tarco_hr_employee_report_wizard,tarco.hr.employee.report.wizard,model_tarco_hr_employee_report_wizard,hr.group_hr_user,1,1,1,1
+access_tarco_hr_period_report_wizard,tarco.hr.period.report.wizard,model_tarco_hr_period_report_wizard,hr.group_hr_user,1,1,1,1
+access_tarco_hr_penalty_generate_wizard,tarco.hr.penalty.generate.wizard,model_tarco_hr_penalty_generate_wizard,hr.group_hr_user,1,1,1,1
+access_tarco_hr_demo_wizard,tarco.hr.demo.wizard,model_tarco_hr_demo_wizard,hr.group_hr_user,1,1,1,1
+access_tarco_hr_dashboard_user,tarco.hr.dashboard user,model_tarco_hr_dashboard,base.group_user,1,1,1,1
+access_tarco_hr_attendance_day_user,tarco.hr.attendance.day user,model_tarco_hr_attendance_day,base.group_user,1,0,0,0
+access_tarco_hr_overtime_user,tarco.hr.overtime user,model_tarco_hr_overtime,base.group_user,1,0,0,0
+access_tarco_hr_overtime_line_user,tarco.hr.overtime.line user,model_tarco_hr_overtime_line,base.group_user,1,0,0,0
+access_tarco_hr_penalty_user,tarco.hr.penalty user,model_tarco_hr_penalty,base.group_user,1,0,0,0
+access_tarco_hr_penalty_line_user,tarco.hr.penalty.line user,model_tarco_hr_penalty_line,base.group_user,1,0,0,0
+access_tarco_hr_reward_user,tarco.hr.reward user,model_tarco_hr_reward,base.group_user,1,0,0,0
+access_tarco_hr_advance_user,tarco.hr.advance user,model_tarco_hr_advance,base.group_user,1,0,0,0
+access_tarco_hr_advance_line_user,tarco.hr.advance.line user,model_tarco_hr_advance_line,base.group_user,1,0,0,0
+access_tarco_hr_leave_encashment_user,tarco.hr.leave.encashment user,model_tarco_hr_leave_encashment,base.group_user,1,0,0,0
+access_tarco_hr_shift_user,tarco.hr.shift user,model_tarco_hr_shift,base.group_user,1,0,0,0
+access_tarco_hr_public_holiday_user,tarco.hr.public.holiday user,model_tarco_hr_public_holiday,base.group_user,1,0,0,0
+access_tarco_hr_asset_type_hr,tarco.hr.asset.type hr,model_tarco_hr_asset_type,hr.group_hr_user,1,1,1,1
+access_tarco_hr_asset_type_user,tarco.hr.asset.type user,model_tarco_hr_asset_type,base.group_user,1,0,0,0
+access_tarco_hr_requirement_hr,tarco.hr.requirement hr,model_tarco_hr_requirement,hr.group_hr_user,1,1,1,1
+access_tarco_hr_requirement_user,tarco.hr.requirement user,model_tarco_hr_requirement,base.group_user,1,0,0,0
+access_tarco_hr_asset_hr,tarco.hr.asset hr,model_tarco_hr_asset,hr.group_hr_user,1,1,1,1
+access_tarco_hr_asset_user,tarco.hr.asset user,model_tarco_hr_asset,base.group_user,1,0,0,0
+access_tarco_hr_exit_wizard,tarco.hr.exit.wizard,model_tarco_hr_exit_wizard,hr.group_hr_user,1,1,1,1
+access_tarco_hr_exit_line,tarco.hr.exit.line,model_tarco_hr_exit_line,hr.group_hr_user,1,1,1,1
+access_tarco_hr_issue_wizard,tarco.hr.issue.wizard,model_tarco_hr_issue_wizard,hr.group_hr_user,1,1,1,1
+access_tarco_hr_issue_line,tarco.hr.issue.line,model_tarco_hr_issue_line,hr.group_hr_user,1,1,1,1
+access_tarco_hr_eos_hr,tarco.hr.eos hr,model_tarco_hr_eos,hr.group_hr_user,1,1,1,1
+access_tarco_hr_eos_user,tarco.hr.eos user,model_tarco_hr_eos,base.group_user,1,0,0,0
